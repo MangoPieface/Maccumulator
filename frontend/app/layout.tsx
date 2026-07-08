@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,11 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <header className="mac-header">
-          <Link href="/" className="mac-logo">
-            <span className="mac-logo-badge" aria-hidden>
-              &#9917;
-            </span>
-            Macmillan
+          <Link href="/" className="mac-logo" aria-label="Macmillan Cancer Support">
+            <Image
+              src="/macmillan_white.png"
+              alt="Macmillan Cancer Support"
+              width={165}
+              height={38}
+              priority
+            />
           </Link>
           <span className="mac-tagline">The Maccumulator</span>
         </header>
