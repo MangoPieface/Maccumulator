@@ -1,21 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { DEFAULT_EVENTS, createSession, formatGBP, saveSession } from "@/lib/maccumulator";
-import { FIXTURES, fixtureLabel, type Fixture } from "@/lib/fixtures";
+import {
+  fixtureLabel,
+  kickoffLabel,
+  upcomingFixtures,
+  type Fixture,
+} from "@/lib/fixtures";
+import { useHydrated } from "@/lib/hooks";
 import { Flag } from "@/components/Flag";
 
 export default function SetupPage() {
   const router = useRouter();
+  const hydrated = useHydrated();
   const [amounts, setAmounts] = useState<Record<string, number>>(() => {
     const seed: Record<string, number> = {};
     DEFAULT_EVENTS.forEach((e) => (seed[e.id] = e.suggestedAmount));
     return seed;
   });
-  const [selectedId, setSelectedId] = useState<string>(FIXTURES[0].id);
 
-  const selected = FIXTURES.find((f) => f.id === selectedId) ?? FIXTURES[0];
+  // Matches that haven't dropped off yet — recomputed once we know the client
+  // date, so a match disappears the day after it's played.
+  const fixtures = useMemo(() => (hydrated ? upcomingFixtures() : []), [hydrated]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const selected =
+    fixtures.find((f) => f.id === selectedId) ?? fixtures[0] ?? null;
 
   function stepAmount(id: string, direction: 1 | -1) {
     setAmounts((a) => {
@@ -59,37 +71,46 @@ export default function SetupPage() {
       <div className="mac-card">
         <h2>Pick your match</h2>
         <p className="mac-muted">Choose a World Cup quarter-final to follow.</p>
-        <ul className="mac-fixture-list">
-          {FIXTURES.map((f) => {
-            const active = f.id === selectedId;
-            return (
-              <li key={f.id}>
-                <button
-                  type="button"
-                  className={`mac-fixture${active ? " is-active" : ""}`}
-                  aria-pressed={active}
-                  onClick={() => setSelectedId(f.id)}
-                >
-                  <span className="mac-fixture-teams">
-                    <span className="team">
-                      <Flag code={f.homeCode} name={f.homeName} />
-                      {f.homeName}
+        {!hydrated ? (
+          <p className="mac-muted">Loading fixtures…</p>
+        ) : fixtures.length === 0 ? (
+          <p className="mac-muted">
+            No upcoming quarter-finals right now — check back when the next round
+            is scheduled.
+          </p>
+        ) : (
+          <ul className="mac-fixture-list">
+            {fixtures.map((f) => {
+              const active = f.id === selected?.id;
+              return (
+                <li key={f.id}>
+                  <button
+                    type="button"
+                    className={`mac-fixture${active ? " is-active" : ""}`}
+                    aria-pressed={active}
+                    onClick={() => setSelectedId(f.id)}
+                  >
+                    <span className="mac-fixture-teams">
+                      <span className="team">
+                        <Flag code={f.homeCode} name={f.homeName} />
+                        {f.homeName}
+                      </span>
+                      <span className="mac-fixture-v">v</span>
+                      <span className="team">
+                        <Flag code={f.awayCode} name={f.awayName} />
+                        {f.awayName}
+                      </span>
                     </span>
-                    <span className="mac-fixture-v">v</span>
-                    <span className="team">
-                      <Flag code={f.awayCode} name={f.awayName} />
-                      {f.awayName}
+                    <span className="mac-fixture-meta">
+                      <span className="round">{f.round}</span>
+                      <span className="kickoff">{kickoffLabel(f)}</span>
                     </span>
-                  </span>
-                  <span className="mac-fixture-meta">
-                    <span className="round">{f.round}</span>
-                    <span className="kickoff">{f.kickoff}</span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
 
       <div className="mac-card">
@@ -139,16 +160,18 @@ export default function SetupPage() {
         })}
       </div>
 
-      <div className="mac-sticky-cta">
-        <button
-          className="mac-btn mac-btn--block"
-          onClick={() => handleStart(selected)}
-        >
-          <Flag code={selected.homeCode} name={selected.homeName} />
-          Start {fixtureLabel(selected)}
-          <Flag code={selected.awayCode} name={selected.awayName} />
-        </button>
-      </div>
+      {selected && (
+        <div className="mac-sticky-cta">
+          <button
+            className="mac-btn mac-btn--block"
+            onClick={() => handleStart(selected)}
+          >
+            <Flag code={selected.homeCode} name={selected.homeName} />
+            Start {fixtureLabel(selected)}
+            <Flag code={selected.awayCode} name={selected.awayName} />
+          </button>
+        </div>
+      )}
     </>
   );
 }
