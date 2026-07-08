@@ -52,7 +52,7 @@ export function total(session: Session): number {
 
 export function donationUrl(session: Session): string {
   const amount = total(session).toFixed(2);
-  return `${DONATION_BASE}?fc=default&type=One_Off&amount=${amount}`;
+  return `${DONATION_BASE}?fc=maccumulator&type=One_Off&amount=${amount}`;
 }
 
 export function createSession(input: {
