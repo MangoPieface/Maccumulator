@@ -1,0 +1,648 @@
+:root {
+  /* Macmillan brand tokens */
+  --mac-green: #008a26;
+  --mac-green-dark: #006e1e;
+  --mac-bright: #01d664;
+  --mac-bright-hover: #00b855;
+  --mac-surface: #f1f4f2;
+  --mac-platinum: #e9e9e5;
+  --mac-border: #dddddd;
+  --mac-grey: #767676;
+  --mac-black: #000000;
+  --mac-white: #ffffff;
+  --radius-card: 12px;
+  --radius-btn: 4px;
+  --font-body: Helvetica, Arial, sans-serif;
+  --font-head: "Macmillan Cera Pro", "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--mac-white);
+  color: var(--mac-black);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: var(--mac-black);
+  margin: 0 0 0.75rem;
+  line-height: 1.15;
+}
+
+a {
+  color: var(--mac-green-dark);
+}
+
+/* Layout */
+.mac-header {
+  background: var(--mac-green);
+  color: var(--mac-white);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mac-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--mac-white);
+  text-decoration: none;
+}
+
+.mac-logo-badge {
+  background: var(--mac-white);
+  color: var(--mac-green);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.mac-tagline {
+  margin-left: auto;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.mac-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.mac-footer {
+  border-top: 1px solid var(--mac-border);
+  padding: 1.5rem 1.25rem;
+  color: var(--mac-grey);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Hero */
+.mac-hero {
+  background: var(--mac-green);
+  color: var(--mac-white);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.mac-hero h1 {
+  color: var(--mac-white);
+  font-size: 2rem;
+}
+
+.mac-hero p {
+  margin: 0.5rem 0 0;
+  font-size: 1.05rem;
+  max-width: 46ch;
+}
+
+/* Cards */
+.mac-card {
+  background: var(--mac-white);
+  border: 1px solid var(--mac-border);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.mac-card--surface {
+  background: var(--mac-surface);
+  border-color: transparent;
+}
+
+/* Buttons */
+.mac-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--mac-bright);
+  color: var(--mac-black);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.mac-btn:hover {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-btn:disabled {
+  background: var(--mac-surface);
+  color: var(--mac-grey);
+  cursor: not-allowed;
+}
+
+.mac-btn--block {
+  width: 100%;
+}
+
+.mac-btn--ghost {
+  background: transparent;
+  color: var(--mac-green-dark);
+  border: 1px solid var(--mac-green);
+}
+
+.mac-btn--ghost:hover {
+  background: var(--mac-green);
+  color: var(--mac-white);
+}
+
+/* Forms */
+.mac-field {
+  margin-bottom: 1rem;
+}
+
+.mac-field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.mac-input {
+  width: 100%;
+  border: 1px solid var(--mac-grey);
+  border-radius: var(--radius-btn);
+  padding: 0.7rem 0.85rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.mac-input:focus {
+  outline: 3px solid var(--mac-bright);
+  outline-offset: 0;
+  border-color: var(--mac-green);
+}
+
+.mac-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.mac-row > * {
+  flex: 1;
+}
+
+/* Event list (setup) */
+.mac-event-config {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--mac-border);
+}
+
+.mac-event-config:last-child {
+  border-bottom: none;
+}
+
+.mac-event-emoji {
+  font-size: 1.5rem;
+  width: 2.25rem;
+  text-align: center;
+  flex: none;
+}
+
+.mac-event-meta {
+  flex: 1;
+}
+
+.mac-event-meta .name {
+  font-weight: 700;
+}
+
+.mac-event-meta .desc {
+  font-size: 0.85rem;
+  color: var(--mac-grey);
+}
+
+.mac-amount-input {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: none;
+}
+
+.mac-amount-input .prefix {
+  color: var(--mac-grey);
+  font-weight: 700;
+}
+
+.mac-amount-input input {
+  width: 5rem;
+  border: 1px solid var(--mac-grey);
+  border-radius: var(--radius-btn);
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* Tracker */
+.mac-scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--mac-green);
+  color: var(--mac-white);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.mac-scoreboard .teams {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.mac-scoreboard .total-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.mac-scoreboard .total-value {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.mac-tracker-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--mac-border);
+}
+
+.mac-tracker-row:last-child {
+  border-bottom: none;
+}
+
+.mac-tracker-meta {
+  flex: 1;
+}
+
+.mac-tracker-meta .name {
+  font-weight: 700;
+}
+
+.mac-tracker-meta .rate {
+  font-size: 0.85rem;
+  color: var(--mac-grey);
+}
+
+.mac-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: none;
+}
+
+.mac-counter .count {
+  min-width: 2ch;
+  text-align: center;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.mac-subtotal {
+  min-width: 4.5rem;
+  text-align: right;
+  font-weight: 700;
+  flex: none;
+}
+
+.mac-step {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.mac-step--plus {
+  background: var(--mac-bright);
+  color: var(--mac-black);
+}
+
+.mac-step--plus:hover {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-step--minus {
+  background: var(--mac-surface);
+  color: var(--mac-black);
+  border: 1px solid var(--mac-border);
+}
+
+.mac-step--minus:hover {
+  background: var(--mac-platinum);
+}
+
+.mac-step:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Donate summary */
+.mac-total-hero {
+  text-align: center;
+  background: var(--mac-surface);
+  border-radius: var(--radius-card);
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mac-total-hero .amount {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--mac-green);
+  margin: 0.5rem 0;
+}
+
+.mac-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--mac-border);
+}
+
+.mac-summary-row:last-child {
+  border-bottom: none;
+}
+
+.mac-note {
+  font-size: 0.85rem;
+  color: var(--mac-grey);
+  margin-top: 1rem;
+}
+
+.mac-error {
+  color: #dd0f0f;
+  font-weight: 700;
+}
+
+.mac-muted {
+  color: var(--mac-grey);
+}
+
+/* Flags */
+.flag {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.mac-flag {
+  display: inline-block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+  height: auto;
+}
+
+.mac-hero-teams {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem !important;
+}
+
+.mac-btn .mac-flag {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Fixture picker */
+.mac-fixture-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mac-fixture {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+  background: var(--mac-white);
+  border: 1px solid var(--mac-border);
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.mac-fixture:hover {
+  border-color: var(--mac-green);
+}
+
+.mac-fixture.is-active {
+  border-color: var(--mac-green);
+  background: var(--mac-surface);
+  box-shadow: 0 0 0 2px var(--mac-green) inset;
+}
+
+.mac-fixture-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.mac-fixture-teams .team {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mac-fixture-v {
+  color: var(--mac-grey);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.mac-fixture-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex: none;
+  text-align: right;
+}
+
+.mac-fixture-meta .round {
+  font-size: 0.75rem;
+  color: var(--mac-grey);
+}
+
+.mac-fixture-meta .kickoff {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Scoreboard flags + total */
+.mac-scoreboard .teams {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mac-scoreboard-total {
+  text-align: right;
+  flex: none;
+}
+
+/* Sticky call-to-action on mobile */
+.mac-sticky-cta {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  padding: 0.75rem 0 0.5rem;
+  background: linear-gradient(
+    to top,
+    var(--mac-white) 70%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.mac-btn .flag {
+  font-size: 1.2em;
+}
+
+/* Mobile tuning */
+@media (max-width: 560px) {
+  .mac-main {
+    padding: 1rem 0.9rem 1rem;
+  }
+
+  .mac-hero {
+    padding: 1.25rem;
+  }
+
+  .mac-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .mac-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mac-scoreboard {
+    padding: 1rem 1.1rem;
+  }
+
+  .mac-scoreboard .total-value {
+    font-size: 1.6rem;
+  }
+
+  /* Setup: let amount inputs stay put while text wraps */
+  .mac-event-config {
+    flex-wrap: wrap;
+  }
+
+  .mac-event-meta {
+    flex: 1 1 60%;
+  }
+
+  /* Tracker: keep name on its own line, controls below, no overflow */
+  .mac-tracker-row {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  .mac-tracker-meta {
+    flex: 1 1 auto;
+  }
+
+  .mac-subtotal {
+    order: 2;
+    min-width: auto;
+  }
+
+  .mac-counter {
+    order: 3;
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+
+  /* Bigger, thumb-friendly step buttons */
+  .mac-step {
+    width: 2.9rem;
+    height: 2.9rem;
+    font-size: 1.6rem;
+  }
+
+  .mac-counter .count {
+    min-width: 2.5ch;
+    font-size: 1.4rem;
+  }
+
+  .mac-fixture {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .mac-fixture-teams {
+    font-size: 1rem;
+  }
+
+  .mac-total-hero .amount {
+    font-size: 2.5rem;
+  }
+
+  .mac-note {
+    word-break: break-word;
+  }
+}
+
