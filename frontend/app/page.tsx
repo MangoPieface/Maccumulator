@@ -2,34 +2,39 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { DEFAULT_EVENTS, createSession, saveSession } from "@/lib/maccumulator";
+import { DEFAULT_EVENTS, createSession, formatGBP, saveSession } from "@/lib/maccumulator";
 import { FIXTURES, fixtureLabel, type Fixture } from "@/lib/fixtures";
 import { Flag } from "@/components/Flag";
 
 export default function SetupPage() {
   const router = useRouter();
-  const [amounts, setAmounts] = useState<Record<string, string>>(() => {
-    const seed: Record<string, string> = {};
-    DEFAULT_EVENTS.forEach((e) => (seed[e.id] = e.suggestedAmount.toFixed(2)));
+  const [amounts, setAmounts] = useState<Record<string, number>>(() => {
+    const seed: Record<string, number> = {};
+    DEFAULT_EVENTS.forEach((e) => (seed[e.id] = e.suggestedAmount));
     return seed;
   });
   const [selectedId, setSelectedId] = useState<string>(FIXTURES[0].id);
 
   const selected = FIXTURES.find((f) => f.id === selectedId) ?? FIXTURES[0];
 
+  const STEP = 0.5;
+
+  function stepAmount(id: string, delta: number) {
+    setAmounts((a) => {
+      const current = a[id] ?? 0;
+      const next = Math.max(0, Math.round((current + delta) * 100) / 100);
+      return { ...a, [id]: next };
+    });
+  }
+
   function handleStart(fixture: Fixture) {
-    const numericAmounts: Record<string, number> = {};
-    for (const [id, val] of Object.entries(amounts)) {
-      const n = Number.parseFloat(val);
-      numericAmounts[id] = Number.isFinite(n) && n >= 0 ? n : 0;
-    }
     const session = createSession({
       matchName: `${fixtureLabel(fixture)} · ${fixture.round}`,
       teamA: fixture.homeName,
       teamB: fixture.awayName,
       teamACode: fixture.homeCode,
       teamBCode: fixture.awayCode,
-      amounts: numericAmounts,
+      amounts,
     });
     saveSession(session);
     router.push(`/track/${session.id}`);
@@ -85,34 +90,48 @@ export default function SetupPage() {
       <div className="mac-card">
         <h2>Choose your donation amounts</h2>
         <p className="mac-muted">
-          Set how much each match event is worth. We&apos;ve pre-filled suggested
-          amounts.
+          Set how much each match event is worth, in 50p steps. We&apos;ve
+          pre-filled suggested amounts.
         </p>
-        {DEFAULT_EVENTS.map((ev) => (
-          <div className="mac-event-config" key={ev.id}>
-            <span className="mac-event-emoji" aria-hidden>
-              {ev.emoji}
-            </span>
-            <div className="mac-event-meta">
-              <div className="name">{ev.name}</div>
-              <div className="desc">{ev.description}</div>
+        {DEFAULT_EVENTS.map((ev) => {
+          const value = amounts[ev.id] ?? 0;
+          return (
+            <div className="mac-event-config" key={ev.id}>
+              <span className="mac-event-emoji" aria-hidden>
+                {ev.emoji}
+              </span>
+              <div className="mac-event-meta">
+                <div className="name">{ev.name}</div>
+                <div className="desc">{ev.description}</div>
+              </div>
+              <div className="mac-counter">
+                <button
+                  type="button"
+                  className="mac-step mac-step--minus"
+                  aria-label={`Decrease amount for ${ev.name}`}
+                  onClick={() => stepAmount(ev.id, -STEP)}
+                  disabled={value <= 0}
+                >
+                  −
+                </button>
+                <span
+                  className="count amount"
+                  aria-label={`Amount for ${ev.name}: ${formatGBP(value)}`}
+                >
+                  {formatGBP(value)}
+                </span>
+                <button
+                  type="button"
+                  className="mac-step mac-step--plus"
+                  aria-label={`Increase amount for ${ev.name}`}
+                  onClick={() => stepAmount(ev.id, STEP)}
+                >
+                  +
+                </button>
+              </div>
             </div>
-            <div className="mac-amount-input">
-              <span className="prefix">£</span>
-              <input
-                type="number"
-                inputMode="decimal"
-                min="0"
-                step="0.10"
-                aria-label={`Donation amount for ${ev.name}`}
-                value={amounts[ev.id] ?? ""}
-                onChange={(e) =>
-                  setAmounts((a) => ({ ...a, [ev.id]: e.target.value }))
-                }
-              />
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mac-sticky-cta">

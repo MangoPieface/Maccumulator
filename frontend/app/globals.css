@@ -342,27 +342,6 @@ a {
   color: var(--mac-grey);
 }
 
-.mac-amount-input {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  flex: none;
-}
-
-.mac-amount-input .prefix {
-  color: var(--mac-grey);
-  font-weight: 700;
-}
-
-.mac-amount-input input {
-  width: 5rem;
-  border: 1px solid var(--mac-grey);
-  border-radius: var(--radius-btn);
-  padding: 0.5rem;
-  font-size: 1rem;
-  text-align: right;
-}
-
 /* Tracker */
 .mac-scoreboard {
   display: flex;
@@ -432,6 +411,11 @@ a {
   font-family: var(--font-head);
   font-weight: 800;
   font-size: 1.25rem;
+}
+
+.mac-counter .count.amount {
+  min-width: 4.5ch;
+  font-size: 1.15rem;
 }
 
 .mac-subtotal {
