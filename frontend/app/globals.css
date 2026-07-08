@@ -80,11 +80,119 @@ a {
 }
 
 .mac-footer {
+  margin-top: 2rem;
+}
+
+.mac-footer-support {
+  background: var(--mac-green);
+  color: var(--mac-white);
+}
+
+.mac-footer-support-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.mac-footer-support h2 {
+  color: var(--mac-white);
+  margin: 0 0 0.35rem;
+  font-size: 1.4rem;
+}
+
+.mac-footer-support p {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 0.95rem;
+}
+
+.mac-footer-phone {
+  flex: none;
+  background: var(--mac-bright);
+  color: var(--mac-black);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-btn);
+  white-space: nowrap;
+}
+
+.mac-footer-phone:hover {
+  background: var(--mac-white);
+  color: var(--mac-green-dark);
+}
+
+.mac-footer-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 2.5rem;
+}
+
+.mac-footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 2rem;
+}
+
+.mac-footer-col h3 {
+  font-size: 1.05rem;
+  color: var(--mac-green);
+  margin: 0 0 0.75rem;
+}
+
+.mac-footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mac-footer-col li {
+  margin-bottom: 0.5rem;
+}
+
+.mac-footer-col a {
+  color: var(--mac-black);
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid transparent;
+}
+
+.mac-footer-col a:hover {
+  color: var(--mac-green-dark);
+  border-bottom-color: var(--mac-green-dark);
+}
+
+.mac-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--mac-border);
-  padding: 1.5rem 1.25rem;
+}
+
+.mac-footer-social a {
+  color: var(--mac-green-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.mac-footer-social a:hover {
+  text-decoration: underline;
+}
+
+.mac-footer-legal {
+  margin: 1.5rem 0 0;
   color: var(--mac-grey);
-  font-size: 0.8rem;
-  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 /* Hero */
@@ -632,6 +740,27 @@ a {
 
   .mac-note {
     word-break: break-word;
+  }
+
+  .mac-footer-support-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 0.9rem;
+  }
+
+  .mac-footer-phone {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .mac-footer-main {
+    padding: 1.5rem 0.9rem 2rem;
+  }
+
+  .mac-footer-cols {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
   }
 }
 

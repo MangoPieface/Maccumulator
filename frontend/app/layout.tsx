@@ -37,8 +37,124 @@ export default function RootLayout({
         </header>
         <main className="mac-main">{children}</main>
         <footer className="mac-footer">
-          A digital Maccumulator MVP for Macmillan Cancer Support. Donations help
-          support the almost 3.5 million people living with cancer in the UK.
+          <div className="mac-footer-support">
+            <div className="mac-footer-support-inner">
+              <div>
+                <h2>Talk to us</h2>
+                <p>
+                  Whatever you want to talk about, we&apos;re here to listen.
+                  Call the Macmillan Support Line free, 7 days a week, 8am–8pm.
+                </p>
+              </div>
+              <a className="mac-footer-phone" href="tel:08088080000">
+                0808 808 00 00
+              </a>
+            </div>
+          </div>
+
+          <div className="mac-footer-main">
+            <nav className="mac-footer-cols" aria-label="Footer">
+              <div className="mac-footer-col">
+                <h3>Cancer information</h3>
+                <ul>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/cancer-information-and-support">
+                      Information &amp; support
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/cancer-information-and-support/treatment">
+                      Treatments
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/cancer-types">
+                      Cancer types
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="mac-footer-col">
+                <h3>Get involved</h3>
+                <ul>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/donate">Donate</a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/fundraise">Fundraise</a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/get-involved/volunteering">
+                      Volunteer
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="mac-footer-col">
+                <h3>About us</h3>
+                <ul>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/about-us">
+                      What we do
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/get-involved/campaigns">
+                      Campaigns
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://jobs.macmillan.org.uk/">Jobs</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="mac-footer-col">
+                <h3>Contact us</h3>
+                <ul>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/about-us/contact-us">
+                      Contact us
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://community.macmillan.org.uk/">
+                      Online Community
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.macmillan.org.uk/about-us/policies/privacy-policy">
+                      Privacy policy
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+            <div className="mac-footer-social" aria-label="Macmillan on social media">
+              <a href="https://www.facebook.com/macmillancancer" aria-label="Facebook">
+                Facebook
+              </a>
+              <a href="https://x.com/macmillancancer" aria-label="X (Twitter)">
+                X
+              </a>
+              <a href="https://www.instagram.com/macmillancancer/" aria-label="Instagram">
+                Instagram
+              </a>
+              <a href="https://www.youtube.com/macmillancancer" aria-label="YouTube">
+                YouTube
+              </a>
+            </div>
+
+            <p className="mac-footer-legal">
+              This is a Maccumulator MVP demo — a digital take on Macmillan&apos;s
+              fundraising idea. Macmillan Cancer Support, registered charity in
+              England and Wales (261017), Scotland (SC039907) and the Isle of Man
+              (604). Also operating in Northern Ireland. A company limited by
+              guarantee, registered in England and Wales company number 2400969.
+              Isle of Man company number 4694F. Registered office: 89 Albert
+              Embankment, London SE1 7UQ. VAT no: 668265007.
+            </p>
+          </div>
         </footer>
       </body>
     </html>
