@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* OneTrust Cookies Consent Notice — the same provider Macmillan uses */}
+        <Script
+          src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          type="text/javascript"
+          charSet="UTF-8"
+          data-domain-script="6d3073ec-cb15-435e-ae8e-6106662d0c47"
+          strategy="beforeInteractive"
+        />
+        <Script id="onetrust-optanon-wrapper" strategy="beforeInteractive">
+          {`function OptanonWrapper() { }`}
+        </Script>
+      </head>
       <body>
         <header className="mac-header">
           <Link href="/" className="mac-logo" aria-label="Macmillan Cancer Support">
