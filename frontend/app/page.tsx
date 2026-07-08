@@ -17,12 +17,17 @@ export default function SetupPage() {
 
   const selected = FIXTURES.find((f) => f.id === selectedId) ?? FIXTURES[0];
 
-  const STEP = 0.5;
-
-  function stepAmount(id: string, delta: number) {
+  function stepAmount(id: string, direction: 1 | -1) {
     setAmounts((a) => {
       const current = a[id] ?? 0;
-      const next = Math.max(0, Math.round((current + delta) * 100) / 100);
+      // Coarse 50p steps at/above 50p; fine 10p steps below 50p.
+      let step: number;
+      if (direction === 1) {
+        step = current < 0.5 ? 0.1 : 0.5;
+      } else {
+        step = current <= 0.5 ? 0.1 : 0.5;
+      }
+      const next = Math.max(0, Math.round((current + direction * step) * 100) / 100);
       return { ...a, [id]: next };
     });
   }
@@ -90,8 +95,8 @@ export default function SetupPage() {
       <div className="mac-card">
         <h2>Choose your donation amounts</h2>
         <p className="mac-muted">
-          Set how much each match event is worth, in 50p steps. We&apos;ve
-          pre-filled suggested amounts.
+          Set how much each match event is worth. Steps in 50p up to bigger
+          amounts, and 10p below 50p. We&apos;ve pre-filled suggested amounts.
         </p>
         {DEFAULT_EVENTS.map((ev) => {
           const value = amounts[ev.id] ?? 0;
@@ -109,7 +114,7 @@ export default function SetupPage() {
                   type="button"
                   className="mac-step mac-step--minus"
                   aria-label={`Decrease amount for ${ev.name}`}
-                  onClick={() => stepAmount(ev.id, -STEP)}
+                  onClick={() => stepAmount(ev.id, -1)}
                   disabled={value <= 0}
                 >
                   −
@@ -124,7 +129,7 @@ export default function SetupPage() {
                   type="button"
                   className="mac-step mac-step--plus"
                   aria-label={`Increase amount for ${ev.name}`}
-                  onClick={() => stepAmount(ev.id, STEP)}
+                  onClick={() => stepAmount(ev.id, 1)}
                 >
                   +
                 </button>
