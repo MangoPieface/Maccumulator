@@ -112,8 +112,11 @@ export default function TrackPage({
         <button
           className="mac-btn mac-btn--block"
           onClick={() => router.push(`/donate/${id}`)}
+          disabled={runningTotal <= 0}
         >
-          Final whistle — donate {formatGBP(runningTotal)}
+          {runningTotal <= 0
+            ? "Tap an event to start your total"
+            : `Final whistle — donate ${formatGBP(runningTotal)}`}
         </button>
       </div>
     </>
