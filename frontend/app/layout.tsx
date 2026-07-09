@@ -47,7 +47,6 @@ export default function RootLayout({
               priority
             />
           </Link>
-          <span className="mac-tagline">The Maccumulator</span>
         </header>
         <main className="mac-main">{children}</main>
         <footer className="mac-footer">
