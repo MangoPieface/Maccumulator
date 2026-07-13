@@ -10,45 +10,27 @@ export type Fixture = {
 };
 
 /**
- * The remaining World Cup quarter-finals. Hardcoded for the demo — swap for a
+ * The remaining World Cup semi-finals. Hardcoded for the demo — swap for a
  * live fixtures feed when integrating for real.
  */
 export const FIXTURES: Fixture[] = [
   {
-    id: "qf1",
-    round: "Quarter-final",
-    kickoffAt: "2026-07-09T21:00:00",
+    id: "sf1",
+    round: "Semi-final",
+    kickoffAt: "2026-07-14T20:00:00",
     homeCode: "fr",
     homeName: "France",
-    awayCode: "ma",
-    awayName: "Morocco",
+    awayCode: "es",
+    awayName: "Spain",
   },
   {
-    id: "qf2",
-    round: "Quarter-final",
-    kickoffAt: "2026-07-10T20:00:00",
-    homeCode: "es",
-    homeName: "Spain",
-    awayCode: "be",
-    awayName: "Belgium",
-  },
-  {
-    id: "qf3",
-    round: "Quarter-final",
-    kickoffAt: "2026-07-11T22:00:00",
-    homeCode: "no",
-    homeName: "Norway",
-    awayCode: "gb-eng",
-    awayName: "England",
-  },
-  {
-    id: "qf4",
-    round: "Quarter-final",
-    kickoffAt: "2026-07-12T02:00:00",
-    homeCode: "ar",
-    homeName: "Argentina",
-    awayCode: "ch",
-    awayName: "Switzerland",
+    id: "sf2",
+    round: "Semi-final",
+    kickoffAt: "2026-07-15T20:00:00",
+    homeCode: "gb-eng",
+    homeName: "England",
+    awayCode: "ar",
+    awayName: "Argentina",
   },
 ];
 

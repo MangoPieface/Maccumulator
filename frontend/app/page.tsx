@@ -70,12 +70,12 @@ export default function SetupPage() {
 
       <div className="mac-card">
         <h2>Pick your match</h2>
-        <p className="mac-muted">Choose a World Cup quarter-final to follow.</p>
+        <p className="mac-muted">Choose a World Cup semi-final to follow.</p>
         {!hydrated ? (
           <p className="mac-muted">Loading fixtures…</p>
         ) : fixtures.length === 0 ? (
           <p className="mac-muted">
-            No upcoming quarter-finals right now — check back when the next round
+            No upcoming semi-finals right now — check back when the next round
             is scheduled.
           </p>
         ) : (

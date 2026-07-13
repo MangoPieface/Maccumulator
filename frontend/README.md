@@ -17,7 +17,7 @@ pre-filled.
 
 ## Screens
 
-1. **Setup** (`app/page.tsx`) — pick one of the four World Cup quarter-finals
+1. **Setup** (`app/page.tsx`) — pick one of the World Cup semi-finals
    (hardcoded for the demo, with country flags) and set the donation amount per event.
 2. **Tracker** (`app/track/[id]/page.tsx`) — tap `+`/`-` on each event as it happens;
    a running Maccumulator total updates live.
