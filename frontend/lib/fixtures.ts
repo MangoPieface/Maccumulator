@@ -17,7 +17,7 @@ export const FIXTURES: Fixture[] = [
   {
     id: "sf1",
     round: "Semi-final",
-    kickoffAt: "2026-07-14T20:00:00",
+    kickoffAt: "2026-08-14T20:00:00",
     homeCode: "fr",
     homeName: "France",
     awayCode: "es",
@@ -26,7 +26,7 @@ export const FIXTURES: Fixture[] = [
   {
     id: "sf2",
     round: "Semi-final",
-    kickoffAt: "2026-07-15T20:00:00",
+    kickoffAt: "2026-08-15T20:00:00",
     homeCode: "gb-eng",
     homeName: "England",
     awayCode: "ar",
